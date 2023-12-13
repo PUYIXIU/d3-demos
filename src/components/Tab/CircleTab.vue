@@ -1,102 +1,120 @@
+<script setup>
+import {computed} from "vue";
+import {ref} from 'vue'
+const rz = ref(16)
+const rotateZ = computed(()=>`rotateZ(${rz.value}deg)`)
+
+const textMenuRotate = (e)=>{
+  const current = e.currentTarget
+  if(Array.from(e.currentTarget.classList).includes('active-item')){ return }
+  const item_list = Array.from(document.getElementsByClassName('tab-item'))
+  const active_item = document.getElementsByClassName('active-item')[0]
+  const cur_index = item_list.findIndex(i=>i == current)
+  const act_index = item_list.findIndex(i=>i == active_item)
+  const len = item_list.length
+  // debugger
+  console.log(act_index - cur_index)
+  let split = act_index-cur_index
+  if(split>4){split-=len}
+  if(split<-4){split+=len}
+  rz.value+=45 * split
+  current.classList.add('active-item')
+  active_item.classList.remove('active-item')
+}
+
+</script>
+
 <template>
-  <div class="content">
-    <div class="inner">
-      <div class="tab-bar flex-row">
-<!--        <div class="tab-item">业务功能</div>-->
-<!--        <div class="tab-item">教培体系</div>-->
-<!--        <div class="tab-item">系统功能</div>-->
-        <div class="tab-text">
-          <svg viewBox="0 0 100 100">
-            <path d="M 0 100 A 70 50 0 0 1 100 100" stroke="none" fill="none" id="circle"/>
-            <text font-size="7" font-weight="bold" fill="#fff">
-              <textPath xlink:href="#circle" spacing="auto">
-                <tspan x="5" @click="tabToggle('left')">业务功能</tspan>
-                <tspan x="40" @click="tabToggle('center')">教培体系</tspan>
-                <tspan x="75" @click="tabToggle('right')">系统功能</tspan>
-              </textPath>
-            </text>
-          </svg>
-        </div>
-      </div>
-      <div :class="['arrow',direction]"></div>
-    </div>
+  <div class="content"  ref="textMenu">
+    <svg width="100%" height="100%" viewBox="-50 -100 100 100">
+      <defs>
+
+        <linearGradient id="gradient1" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0%" stop-color="#3486FF"  />
+          <stop offset="25%" stop-color="#116FFD" stop-opacity="0" />
+          <stop offset="50%" stop-color="transparent" />
+        </linearGradient>
+        <linearGradient id="gradient2" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0%" stop-color="#ffffff55"  />
+          <stop offset="25%" stop-color="#fff" stop-opacity="0" />
+          <stop offset="50%" stop-color="transparent" />
+        </linearGradient>
+        <linearGradient id="gradient3" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0%" stop-color="#ffffff44"  />
+          <stop offset="10%" stop-color="#ffffff22"  />
+          <stop offset="100%" stop-color="transparent" />
+        </linearGradient>
+        <linearGradient id="gradient4" x1="0" x2="1" y1="0" y2="0">
+          <stop offset="0%" stop-color="#307BEC"  />
+          <stop offset="100%" stop-color="#000" stop-opacity="0.5" />
+        </linearGradient>
+        <filter id="shadow2">
+          <feDropShadow dx="0" dy="0" stdDeviation="1" flood-color="cyan" />
+        </filter>
+      </defs>
+      <path id="circle" d="M -50 -20 A 50 50 0 1 1 -50 -19.999" stroke="transparent" stroke-width="1" fill="none" transform="scale(0.96)"></path>
+      <path d="M -50 -20 A 50 50 0 1 1 -50 -19.999" stroke="#0E174977" stroke-width="22" fill="none" style="filter:blur(1.5px)"></path>
+      <path d="M -50 -20 A 50 50 0 1 1 -50 -19.999" stroke="url(#gradient1)" stroke-width="1" transform-origin="0 -20" fill="none" transform="scale(1.2)"></path>
+      <path d="M -12 -68.5 A 50 50 0 0 1 15 -67.8" stroke="#fff" stroke-width="1.1"  transform-origin="0 -20" fill="none" transform="scale(1.2)" style="filter:brightness(5)"></path>
+      <path d="M -12 -68.5 A 50 50 0 0 1 15 -67.8" stroke="#fff" stroke-width="1.1"  transform-origin="0 -20" fill="none" transform="scale(1.2)" style="filter:blur(1.5px)"></path>
+      <path d="M -50 -20 A 50 50 0 1 1 -50 -19.999" stroke="url(#gradient2)" stroke-dasharray="3,2" stroke-width="1"  transform-origin="0 -20" fill="none" transform="scale(0.77)"></path>
+      <path d="M -50 -20 A 50 50 0 1 1 -50 -19.999"   transform-origin="0 -20" fill="url(#gradient3)" transform="scale(0.77)"></path>
+      <text font-size="6" font-weight="bold" fill="#fff" transform-origin="0 -20" id="text-path" :style="{
+        transform:rotateZ
+      }">
+        <textPath href="#circle" side="right">
+          <tspan dx="13.7" @click="textMenuRotate" class="tab-item">业务功能</tspan>
+          <tspan dx="13.7" @click="textMenuRotate" class="tab-item active-item">教培体系</tspan>
+          <tspan dx="13.7" @click="textMenuRotate" class="tab-item">系统功能</tspan>
+          <tspan dx="13.7" @click="textMenuRotate" class="tab-item">业务功能</tspan>
+          <tspan dx="13.7" @click="textMenuRotate" class="tab-item">教培体系</tspan>
+          <tspan dx="13.7" @click="textMenuRotate" class="tab-item">系统功能</tspan>
+          <tspan dx="13.7" @click="textMenuRotate" class="tab-item">业务功能</tspan>
+          <tspan dx="13.7" @click="textMenuRotate" class="tab-item">教培体系</tspan>
+        </textPath>
+      </text>
+      <g style="filter:blur(1px)">
+        <polygon points=" -8,-53 0,-62 8,-53 3.5,-54 3.5,-56 0,-60 -3.5,-56 -3.5,-54" fill="#307BEC" ></polygon>
+        <polygon points=" -2,-53 0 -45 2,-53 0,-50" fill="#307BEC"></polygon>
+        <polygon points=" -2,-56 0 -58 2,-56 0,-54" fill="#307BEC" class="square" transform="translate(0,10) scale(0.9)"></polygon>
+        <polygon points=" -2,-56 0 -58 2,-56 0,-54" fill="#307BEC" class="square" transform="translate(0,5) scale(0.7)"></polygon>
+      </g>
+      <g>
+        <polygon points=" -8,-53 0,-62 8,-53 3.5,-54 3.5,-56 0,-60 -3.5,-56 -3.5,-54" fill="#fff"></polygon>
+        <polygon points=" -2,-53 0 -45 2,-53 0,-50" fill="#fff"></polygon>
+        <polygon points=" -2,-56 0 -58 2,-56 0,-54" fill="#fff" class="square" transform="translate(0,10) scale(0.9)"></polygon>
+        <polygon points=" -2,-56 0 -58 2,-56 0,-54" fill="#fff" class="square" transform="translate(0,5) scale(0.7)"></polygon>
+      </g>
+      <polygon points=" -2,-56 0 -58 2,-56 0,-54" stroke-width="0.1" stroke="#ffffffaa" fill="url(#gradient4)" class="square"></polygon>
+    </svg>
   </div>
 </template>
 
-<script setup>
 
-import {ref} from 'vue'
-const direction = ref('center')
-function tabToggle(option){
-  direction.value = option
-}
-</script>
 
 <style scoped lang="scss">
 .content{
-  //background-color: #dae1ff;
+  background-color: #1a1f34;
   height:100%;
+  width:100%;
 }
-.inner{
-  position:relative;
-  height:40%;
-  border: 5px solid transparent;
-  border-bottom: 0px;
-  overflow: hidden;
-
-}
-.tab-bar{
-  position:relative;
-  height:100%;
-  display: flex;
-  justify-content: space-around;
-
+#text-path{
+  transform: rotateZ(16deg);
+  transition: 0.3s ease-in-out transform;
   .tab-item{
-    color:#fff;
-    font-weight: bold;
-  }
-  .tab-text{
-    position: absolute;
-    top:0;
-    left:0;
-    height:100%;
-    width: 100%;
-    overflow: hidden;
-    svg{
-      position:absolute;
-      bottom:0;
-    }
+    cursor: pointer;
+    user-select: none;
   }
 }
-.arrow{
-  position:absolute;
-  bottom:-1px;
-  left:50%;
-  transform: translateX(-50%);
-  width:5px;
-  height:25px;
-  background-color: aqua;
-  transform-origin: bottom;
-  transition:0.3s all ease-in-out;
-  &::before{
-    content:"";
-    display: block;
-    position:absolute;
-    background-color: #00ffff;
-    clip-path: polygon(50% 0,100% 100%, 0 100%);
-    width:10px;
-    height:10px;
-    top:-10px;
-    left: -2.5px;
-  }
-  &.left{
-    transform: rotateZ(-45deg);
-  }
-  &.center{
-    transform: rotateZ(0deg);
-  }
-  &.right{
-    transform: rotateZ(45deg);
-  }
+.active-bar{
+  box-shadow: #fff 0px 0px 10px;
 }
+//@keyframes rotate_z {
+//  0%{
+//    transform: rotateZ(20deg);
+//  }
+//  100%{
+//    transform: rotateZ(380deg);
+//  }
+//}
 </style>

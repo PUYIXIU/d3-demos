@@ -16,10 +16,7 @@
         <CircleTab></CircleTab>
       </div>
       <div class="cell" >
-        <Bar :id="'chart5'"></Bar>
-      </div>
-      <div class="cell">
-        <Line :id="'chart6'"></Line>
+        <SubsectionBar></SubsectionBar>
       </div>
     </div>
   </div>
