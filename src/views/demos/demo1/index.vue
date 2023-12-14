@@ -24,14 +24,6 @@
 
 
 <script setup>
-// import CirclePie from "@/components/Charts/Pie/CirclePie"
-
-import {onMounted} from "@vue/runtime-core";
-
-
-
-onMounted(()=>{
-})
 </script>
 
 <style scoped lang="scss">

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <svg id="container" width="500" height="500" viewBox="0 0 500 500">
+    </svg>
+</body>
+<script>
+    const container = document.getElementById('container')
+    function drawDot(){
+      let circle = document.createElementNS("http://www.w3.org/2000/svg",'circle')
+      let cx = 480 * Math.random()
+      let cy = 480 * Math.random()
+      let r = 20* Math.random()
+      circle.setAttribute('cx',cx)
+      circle.setAttribute('cy',cy)
+      circle.setAttribute('r',r)
+      circle.setAttribute('fill','#000')
+      container.append(circle)
+    }
+    setInterval(()=>{
+        drawDot()
+    },100)
+</script>
+</html>
