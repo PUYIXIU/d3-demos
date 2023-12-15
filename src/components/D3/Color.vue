@@ -1,9 +1,11 @@
 <script setup>
+
 </script>
 
 <template>
-  <router-view keep-alive></router-view>
+  <div>123</div>
 </template>
 
 <style scoped lang="scss">
+
 </style>

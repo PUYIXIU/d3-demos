@@ -15,9 +15,21 @@ import Chord from "@/components/D3/Chord.vue";
       <SvgAxis></SvgAxis>
     </div>
     <div class="cell" >
-      <div class="title">2.d3-chord</div>
-      <Chord></Chord>
+      <div class="title">2.1.d3-shape-arc</div>
+      <ShapeArc></ShapeArc>
     </div>
+    <div class="cell" >
+      <div class="title">2.2.d3-shape-areas</div>
+      <ShapeArea></ShapeArea>
+    </div>
+<!--    <div class="cell" >-->
+<!--      <div class="title">2.d3-chord</div>-->
+<!--      <Chord></Chord>-->
+<!--    </div>-->
+<!--    <div class="cell" >-->
+<!--      <div class="title">3.d3-color</div>-->
+<!--      <Color></Color>-->
+<!--    </div>-->
   </div>
 </template>
 
