@@ -20,6 +20,10 @@ export const routes = [
             {
                 path:'/demos/demo2',
                 component: ()=> import('@/views/demos/d3_demo/index')
+            },
+            {
+                path:'/demos/demo3',
+                component: ()=> import('@/views/demos/lottery/index')
             }
         ]
     }

@@ -9,6 +9,10 @@
         <div class="title">demo2 D3</div>
         <img width="100%" src="" alt="">
       </li>
+      <li @click="router.push('/demos/demo3')">
+        <div class="title">demo3 Lottery</div>
+        <img width="100%" src="" alt="">
+      </li>
     </ul>
   </div>
 </template>

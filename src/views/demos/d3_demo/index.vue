@@ -22,6 +22,10 @@ import Chord from "@/components/D3/Chord.vue";
       <div class="title">2.2.d3-shape-areas</div>
       <ShapeArea></ShapeArea>
     </div>
+    <div class="cell" >
+      <div class="title">2.3.d3-shape-lines</div>
+      <ShapeLines></ShapeLines>
+    </div>
 <!--    <div class="cell" >-->
 <!--      <div class="title">2.d3-chord</div>-->
 <!--      <Chord></Chord>-->
@@ -37,6 +41,7 @@ import Chord from "@/components/D3/Chord.vue";
 <style scoped lang="scss">
 .page{
   width: 100%;
+  height: fit-content;
 }
 .cell{
   border:1px solid #000;
