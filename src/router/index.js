@@ -23,7 +23,16 @@ export const routes = [
             },
             {
                 path:'/demos/demo3',
-                component: ()=> import('@/views/demos/lottery/index')
+                children:[
+                    {
+                        path:'/demos/demo3',
+                        component: ()=> import('@/views/demos/lottery/index')
+                    },
+                    {
+                        path:'/demos/demo3/canvas',
+                        component: ()=> import('@/views/demos/lottery/canvas')
+                    },
+                ]
             }
         ]
     }

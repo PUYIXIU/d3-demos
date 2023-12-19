@@ -6,7 +6,7 @@ const props = defineProps({
   width:{type:Number, default:500},
   height:{type:Number,default:300},
   define:{type:Function,default:(d)=>true},
-  curve:{type:String,default:'curveLinear'}
+  curve:{type:String,default:'curveLinear'},
 })
 
 let svg, x, y, line, baseLine
@@ -21,8 +21,30 @@ const gy = ref()
 const linePath = ref()
 const basePath = ref()
 const svgBox = ref()
+
+function updateAxis(){
+  let {transpose,data, width,height} = props
+  x = d3.scaleUtc(d3.extent(data, d=>new Date(d.date)), [marginLeft, width-marginRight])
+  y = d3.scaleLinear([0, d3.max(data, d=>d.close)], [height - marginBottom, marginTop])
+  if(transpose){ // xy轴转置
+    x = d3.scaleLinear([0, d3.max(data, d=>d.close)], [marginLeft, width-marginRight])
+    y = d3.scaleUtc(d3.extent(data, d=>new Date(d.date)),[height - marginBottom, marginTop])
+  }
+  d3.select(gx.value)
+      .transition()
+      .duration(1000)
+      .call(d3.axisBottom(x).ticks(width/80).tickSizeOuter(0))
+  d3.select(gy.value)
+      .transition()
+      .duration(1000)
+      .call(d3.axisLeft(y).ticks(height/40))
+}
 // 创建坐标系
 function createAxis(){
+  if(x!==undefined || y!== undefined){
+    updateAxis()
+    return
+  }
   let {transpose,data, width,height} = props
   x = d3.scaleUtc(d3.extent(data, d=>new Date(d.date)), [marginLeft, width-marginRight])
   y = d3.scaleLinear([0, d3.max(data, d=>d.close)], [height - marginBottom, marginTop])
@@ -61,16 +83,25 @@ function createSvg(){
 }
 
 function createLines(){
-  let {data,width,height} = props
-  const line = d3.line()
+  let {data,width,height,define, curve} = props
+  const line = d3.line().defined(define).curve(d3[curve])
+      .x(d=>x(new Date(d.date)))
+      .y(d=>y(d.close))
+  const baseLine = d3.line()
       .x(d=>x(new Date(d.date)))
       .y(d=>y(d.close))
   d3.select(linePath.value)
       .attr('transform',`translate(${-width/2},${-height/2})`)
       .attr('fill','none')
       .attr('stroke','#b45c5c')
-      .attr('stroke-width',1)
+      .attr('stroke-width',1.5)
       .attr('d',line(data))
+  d3.select(basePath.value)
+      .attr('transform',`translate(${-width/2},${-height/2})`)
+      .attr('fill','none')
+      .attr('stroke','rgba(112,112,112,0.15)')
+      .attr('stroke-width',1.5)
+      .attr('d',baseLine(data.filter(define)))
 }
 
 watch(
@@ -84,7 +115,7 @@ watch(
 watch(
     ()=>props.curve,
     ()=>{
-
+      createLines()
     }
 )
 </script>

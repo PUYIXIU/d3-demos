@@ -42,11 +42,11 @@
     }
     d3.select(gx.value)
         .transition()
-        .duration(props.duration)
+        .duration(1000)
         .call(d3.axisBottom(x).ticks(width/80).tickSizeOuter(0))
     d3.select(gy.value)
         .transition()
-        .duration(props.duration)
+        .duration(1000)
         .call(d3.axisLeft(y).ticks(height/40))
   }
   // 创建坐标系

@@ -2,6 +2,15 @@
 import Axis from '@/components/D3/Aixs.vue'
 import SvgAxis from "@/components/D3/SvgAxis.vue";
 import Chord from "@/components/D3/Chord.vue";
+import ShapeLines from "@/components/D3/ShapeLines.vue";
+
+import {onMounted} from "@vue/runtime-core";
+
+onMounted(()=>{
+  let {scrollHeight} = document.body;
+  let {innerHeight} = window
+  window.scrollTo(0,scrollHeight-innerHeight)
+})
 </script>
 
 <template>
@@ -25,6 +34,14 @@ import Chord from "@/components/D3/Chord.vue";
     <div class="cell" >
       <div class="title">2.3.d3-shape-lines</div>
       <ShapeLines></ShapeLines>
+    </div>
+    <div class="cell" >
+      <div class="title">2.4.d3-shape-links</div>
+      <ShapeLinks></ShapeLinks>
+    </div>
+    <div class="cell" >
+      <div class="title">2.5.d3-shape-pie</div>
+      <ShapePie></ShapePie>
     </div>
 <!--    <div class="cell" >-->
 <!--      <div class="title">2.d3-chord</div>-->

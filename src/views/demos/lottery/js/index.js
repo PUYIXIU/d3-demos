@@ -371,7 +371,6 @@ function addHighlight() {
  * 渲染地球等
  */
 function transform(targets, duration) {
-    // TWEEN.removeAll();
     for (var i = 0; i < threeDCards.length; i++) {
         var object = threeDCards[i];
         var target = targets[i];

@@ -14,13 +14,14 @@ export function initCanvas(){
   var i;
   var animate = true;
   initializeStars();
-
+  executeFrame()
   window.onresize = ()=>{
     canvas.width = window.innerWidth
     canvas.height = window.innerHeight
   }
   function executeFrame() {
-    if (animate) requestAnimFrame(executeFrame);
+    // if (animate) requestAnimFrame(executeFrame);
+    if (animate) requestAnimationFrame(executeFrame);
     moveStars();
     drawStars();
   }
@@ -79,7 +80,6 @@ export function initCanvas(){
 
       c.fillRect(pixelX, pixelY, pixelRadius, pixelRadius);
       c.fillStyle = "rgba(209, 255, 255, " + star.o + ")";
-      //c.fill();
     }
   }
 }

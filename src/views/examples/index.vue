@@ -9,8 +9,10 @@
         <div class="title">demo2 D3</div>
         <img width="100%" src="" alt="">
       </li>
-      <li @click="router.push('/demos/demo3')">
-        <div class="title">demo3 Lottery</div>
+      <li @click.stop="router.push('/demos/demo3')">
+        <div class="title" >demo3 Lottery</div>
+        <div class="sub-model"  @click.stop="router.push('/demos/demo3/canvas')">canvas背景</div>
+        <div class="sub-model">threejs+tween</div>
         <img width="100%" src="" alt="">
       </li>
     </ul>
@@ -53,6 +55,17 @@ const router = useRouter()
       height:30px;
       color: #ff8a0f;
       text-align: center;
+    }
+    .sub-model{
+      color:white;
+      text-align: center;
+      font-size:14px;
+      padding: 3px 10px;
+      border:1px solid #cccccc;
+      margin:5px;
+      &:hover{
+        background: rgba(0, 0, 0, 0.4);
+      }
     }
   }
 }
