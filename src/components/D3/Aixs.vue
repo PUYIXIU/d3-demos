@@ -38,7 +38,7 @@ function loadChart(){
       .attr('transform',`translate(${marginLeft},0)`)
       .call(d3.axisLeft(y))
   // dom容器添加svg
-  container.append(svg.node())
+  container?.append(svg.node())
 }
 
 onMounted(()=>{

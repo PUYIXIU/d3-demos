@@ -1,0 +1,18 @@
+[
+  {"date": "2015-01-01", "fruit": "apples", "sales": 3840},
+  {"date": "2015-01-01", "fruit": "bananas", "sales": 1920},
+  {"date": "2015-01-01", "fruit": "cherries", "sales": 960},
+  {"date": "2015-01-01", "fruit": "durians", "sales": 400},
+  {"date": "2015-02-01", "fruit": "apples", "sales": 1600},
+  {"date": "2015-02-01", "fruit": "bananas", "sales": 1440},
+  {"date": "2015-02-01", "fruit": "cherries", "sales": 960},
+  {"date": "2015-02-01", "fruit": "durians", "sales": 400},
+  {"date": "2015-03-01", "fruit": "apples", "sales": 640},
+  {"date": "2015-03-01", "fruit": "bananas", "sales": 960},
+  {"date": "2015-03-01", "fruit": "cherries", "sales": 640},
+  {"date": "2015-03-01", "fruit": "durians", "sales": 400},
+  {"date": "2015-04-01", "fruit": "apples", "sales": 320},
+  {"date": "2015-04-01", "fruit": "bananas", "sales": 480},
+  {"date": "2015-04-01", "fruit": "cherries", "sales": 640},
+  {"date": "2015-04-01", "fruit": "durians", "sales": 400}
+]

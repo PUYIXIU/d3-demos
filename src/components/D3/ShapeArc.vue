@@ -22,7 +22,7 @@
   <div class="container">
     <div class="read-me">
       <li>arc 创建弧形</li>
-      <li>centriod 配置中心点</li>
+      <li>centroid 获取到圆弧中心坐标</li>
       <li>innerRadius 内半径</li>
       <li>outerRadius 外半径</li>
       <li>cornerRadius 圆角半径 [0, (outerRadius - innerRadius)/2]</li>

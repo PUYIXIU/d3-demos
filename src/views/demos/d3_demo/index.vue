@@ -8,8 +8,7 @@ import {onMounted} from "@vue/runtime-core";
 
 onMounted(()=>{
   let {scrollHeight} = document.body;
-  let {innerHeight} = window
-  window.scrollTo(0,scrollHeight-innerHeight)
+  window.scrollTo(0,scrollHeight)
 })
 </script>
 
@@ -42,6 +41,10 @@ onMounted(()=>{
     <div class="cell" >
       <div class="title">2.5.d3-shape-pie</div>
       <ShapePie></ShapePie>
+    </div>
+    <div class="cell" >
+      <div class="title">2.6.d3-shape-stacks</div>
+      <ShapeStack></ShapeStack>
     </div>
 <!--    <div class="cell" >-->
 <!--      <div class="title">2.d3-chord</div>-->

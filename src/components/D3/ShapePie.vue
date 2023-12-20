@@ -5,7 +5,7 @@ import axios from "axios";
 import ExamplePie from "@/components/D3/ExamplePie.vue";
 
 let mockData = ref([])
-let radius = ref(80)
+let radius = ref(130)
 function getMock(){
   return axios.get('public/mock/PieData.json')
 }
@@ -34,9 +34,11 @@ onMounted(()=>{
     </div>
     <ExamplePie
       :data="mockData"
-      :arc="d3.arc().innerRadius(radius*0.67)"
-      :pie="d3.pie().padAngle(1/radius).value(d=>d.value)"
+      :arc="d3.arc().innerRadius(radius*0.67).outerRadius(radius-1)"
+      :pie="d3.pie().padAngle(1/radius).value(d=>d.value).sort(null)"
     ></ExamplePie>
+    <RosePie :data="mockData"></RosePie>
+
   </div>
 </template>
 
@@ -48,7 +50,7 @@ onMounted(()=>{
   background: white;
   .read-me{
     margin:10px;
-    background: #eaeaea;
+    background:#eaeaea;
     padding:10px;
     line-height:30px;
   }
