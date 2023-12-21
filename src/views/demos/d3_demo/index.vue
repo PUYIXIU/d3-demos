@@ -5,6 +5,8 @@ import Chord from "@/components/D3/Chord.vue";
 import ShapeLines from "@/components/D3/ShapeLines.vue";
 
 import {onMounted} from "@vue/runtime-core";
+import ShapeSymbol from "@/components/D3/ShapeSymbol.vue";
+import ShapeRadialAreas from "@/components/D3/ShapeRadialAreas.vue";
 
 onMounted(()=>{
   let {scrollHeight} = document.body;
@@ -14,6 +16,19 @@ onMounted(()=>{
 
 <template>
   <div class="page">
+    <div class="nav-cell">
+      <div class="leaf-content content-1"></div>
+      <div class="content-2">
+        <div class="content-2-1">
+          <div class="leaf-content content-2-1-1"></div>
+          <div class="leaf-content content-2-1-2"></div>
+        </div>
+        <div class="content-2-2">
+          <div class="leaf-content content-2-2-1"></div>
+          <div class="leaf-content content-2-2-2"></div>
+        </div>
+      </div>
+    </div>
     <div class="cell" >
       <div class="title">0.引入D3</div>
       <Axis :id="'axis'" class="chart"></Axis>
@@ -45,6 +60,14 @@ onMounted(()=>{
     <div class="cell" >
       <div class="title">2.6.d3-shape-stacks</div>
       <ShapeStack></ShapeStack>
+    </div>
+    <div class="cell" >
+      <div class="title">2.7.d3-shape-symbol</div>
+      <ShapeSymbol></ShapeSymbol>
+    </div>
+    <div class="cell" >
+      <div class="title">2.8.d3-shape-RadialAreas</div>
+      <ShapeRadialAreas></ShapeRadialAreas>
     </div>
 <!--    <div class="cell" >-->
 <!--      <div class="title">2.d3-chord</div>-->
@@ -83,5 +106,60 @@ onMounted(()=>{
     background: #fff;
   }
 }
-
+.nav-cell{
+  width:90%;
+  height:250px;
+  margin:10px auto;
+  display: flex;
+  .leaf-content{
+    cursor:pointer;
+    transform-origin: center;
+    transition:all 0.3s ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px;
+    &:hover{
+      transform: scale(1.2);
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 10px
+    }
+  }
+  .content-1{
+    background: #c4ffdf;
+    width: 30%;
+  }
+  .content-2{
+    background: #ffd6d6;
+    width: 70%;
+    .content-2-1{
+      height:45%;
+      width: 100%;
+      background: #cde8fa;
+      display: flex;
+      .content-2-1-1{
+        height:100%;
+        width:45%;
+        background: #ffedd5;
+      }
+      .content-2-1-2{
+        height:100%;
+        width:55%;
+        background: #ffd9d5;
+      }
+    }
+    .content-2-2{
+      height:55%;
+      width: 100%;
+      background: #f4cdfa;
+      display: flex;
+      .content-2-2-1{
+        height:100%;
+        width:55%;
+        background: #d5feff;
+      }
+      .content-2-2-2{
+        height:100%;
+        width:45%;
+        background: #e0d5ff;
+      }
+    }
+  }
+}
 </style>

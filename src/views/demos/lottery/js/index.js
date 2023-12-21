@@ -106,7 +106,6 @@ export function initAll() {
         basicData.users = data;
 
         initCards();
-        // startMaoPao();
         animate();
         shineCard();
     })

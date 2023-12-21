@@ -11,8 +11,8 @@
       </li>
       <li @click.stop="router.push('/demos/demo3')">
         <div class="title" >demo3 Lottery</div>
-        <div class="sub-model"  @click.stop="router.push('/demos/demo3/canvas')">canvas背景</div>
-        <div class="sub-model">threejs+tween</div>
+        <div class="sub-model" @click.stop="router.push('/demos/demo3/canvas')">canvas背景</div>
+        <div class="sub-model" @click.stop="router.push('/demos/demo3/Sphere3D')">threejs+tween</div>
         <img width="100%" src="" alt="">
       </li>
     </ul>

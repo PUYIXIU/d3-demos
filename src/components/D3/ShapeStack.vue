@@ -4,10 +4,30 @@ import {ref,  reactive, onMounted, watch, computed} from 'vue'
 import axios from "axios";
 import ExampleStacks from "@/components/D3/ExampleStacks.vue";
 import StackedBarChart from "@/components/D3/StackedBarChart.vue";
+import ExampleStackArea from "@/components/D3/ExampleStackArea.vue";
 let stackData = ref([])
 let radius = ref(130)
+const order = ref('stackOrderNone')
+const offset = ref('stackOffsetNone')
+const orderOptions = [
+  {label:'stackOrderAppearance',value:'最早出现的序列在底部（x轴）'},
+  {label:'stackOrderAscending',value:'最小序列在底部（y轴）'},
+  {label:'stackOrderDescending',value:'最大序列在底部（y轴）'},
+  {label:'stackOrderInsideOut',value:'早出现在内层，晚出现在外层（x轴）'},
+  {label:'stackOrderNone',value:'不排序'},
+  {label:'stackOrderReverse',value:'倒序'},
+]
+const offsetOptions = [
+  // {label:'stackOffsetExpand',value:'扩展到整张画布'},
+  {label:'stackOffsetDiverging',value:'允许负方向的堆叠'},
+  {label:'stackOffsetNone',value:'无位移'},
+  {label:'stackOffsetSilhouette',value:'基线向下移动'},
+  {label:'stackOffsetWiggle',value:'移动基线使垂直差值最小'},
+]
 let stack = computed(()=>{
   return d3.stack()
+      .order(d3[order.value])
+      .offset(d3[offset.value])
       .keys(d3.union(stackData.value.map(d=>d.fruit)))
       .value(([,group],key)=>group.get(key).sales)(d3.index(stackData.value, d=>d.date, d=>d.fruit))
 })
@@ -47,6 +67,23 @@ onMounted(()=>{
         :stack="stack"
         :color="color"
     ></ExampleStacks>
+    <div style="margin:0px auto;width:50%;display: flex;padding:5px 20px;">
+      <span style="text-wrap: nowrap;margin-right: 20px">Order</span>
+      <el-radio-group v-model="order">
+        <el-radio v-for="option in orderOptions" :label="option.label">{{option.value}}</el-radio>
+      </el-radio-group>
+    </div>
+    <div style="margin:0px auto;width:50%;display: flex;padding:5px 20px;">
+      <span style="text-wrap: nowrap;margin-right: 20px">Offset</span>
+      <el-radio-group v-model="offset">
+        <el-radio v-for="option in offsetOptions" :label="option.label">{{option.value}}</el-radio>
+      </el-radio-group>
+    </div>
+    <ExampleStackArea
+        :data="stackData"
+        :stack="stack"
+        :color="color"
+    ></ExampleStackArea>
     <StackedBarChart></StackedBarChart>
   </div>
 </template>

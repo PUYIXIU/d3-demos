@@ -32,6 +32,10 @@ export const routes = [
                         path:'/demos/demo3/canvas',
                         component: ()=> import('@/views/demos/lottery/canvas')
                     },
+                    {
+                        path:'/demos/demo3/Sphere3D',
+                        component: ()=> import('@/views/demos/lottery/Sphere3D')
+                    },
                 ]
             }
         ]
